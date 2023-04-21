@@ -1,4 +1,4 @@
-### React JS & Redux Toolkit Multible Reducer
+# React JS & Redux Toolkit Multible Reducer
 
 This repo is about how to use multible reducer with Redux Toolkit in React js
 

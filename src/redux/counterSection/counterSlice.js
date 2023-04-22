@@ -6,7 +6,7 @@ const initialStateValues = {
 }
 
 export const counterSlice = createSlice({
-    name: 'ccc',
+    name: 'counter',
     initialState: initialStateValues,
     reducers: {
         increment: (state) => {
@@ -44,6 +44,6 @@ export const decrementAsync = amount => dispatch => {
 
 export const { increment, decrement, incrementByAmount, decrementByAmount } = counterSlice.actions;
 
-export const selectCount = state => state.counter;
+export const selectedCount = state => state.counter;
 
 export default counterSlice.reducer

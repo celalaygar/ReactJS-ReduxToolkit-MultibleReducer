@@ -1,9 +1,9 @@
 import Counter from './redux/counterSection/Counter';
-import { selectCount } from './redux/counterSection/counterSlice';
+import { selectedCount } from './redux/counterSection/counterSlice';
 import { useSelector } from 'react-redux';
 const App = () => {
 
-  const count = useSelector(selectCount);
+  const count = useSelector(selectedCount);
   return (
     <div>
       <Counter />

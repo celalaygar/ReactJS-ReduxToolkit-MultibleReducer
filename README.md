@@ -2,7 +2,7 @@
 
 This repo is about how to use multible reducer with Redux Toolkit in React js.
 
-This project is about how to use multible reducer and redux toolkit. There are two reducers called counter and authentication.
+This project is about how to use multible reducer by using redux toolkit. There are two reducers called counter and authentication.
 
 #### how to create REACT JS Project
 

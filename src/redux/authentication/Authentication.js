@@ -1,11 +1,19 @@
 
 
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAsync, logoutAsync, selectedAuthentication } from './AuthenticationSlice';
 
 const Authentication = () => {
+
+
+    const selectedAuth = useSelector(selectedAuthentication);
+    const dispatch = useDispatch();
+
     const [body, setBody] = useState({
         username: "1",
         password: "22",
+        email: "@gg.com"
     });
     const onChangeBody = e => {
         let data = body;
@@ -13,25 +21,63 @@ const Authentication = () => {
         setBody({ ...data });
     }
     const login = e => {
-        console.log("login")
-        console.log(body)
+        e.preventDefault();
+        console.log("login");
+        console.log(body);
+        dispatch(loginAsync({
+            username: body.username,
+            password: body.password,
+            email: body.email,
+            token: body.password + "+++" + body.password,
+        }))
     }
     const logout = e => {
+        e.preventDefault();
         console.log("logout")
         console.log(body)
+
+        dispatch(logoutAsync({
+            username: body.username,
+            password: body.password,
+            email: body.email,
+            token: null,
+        }))
+
     }
     return (
         <div>
             <h5>Authentication</h5>
-            <hr />
-            <span>Username : </span>
-            <input type="text" name="username" value={body?.username} onChange={(e) => onChangeBody(e)} />
-            <br />
-            <span>Password : </span>
-            <input type="password" name="password" value={body?.password} onChange={(e) => onChangeBody(e)} />
-            <br />
-            <button type='submit' onClick={login}>Login</button>
-            <button type='submit' onClick={logout}>Logout</button>
+            {
+                selectedAuth?.isloggedIn === false ?
+                    <div>
+                        <hr />
+                        <span>Username : </span>
+                        <input type="text" name="username" value={body?.username} onChange={(e) => onChangeBody(e)} />
+                        <br />
+                        <span>Email : </span>
+                        <input type="text" name="email" value={body?.email} onChange={(e) => onChangeBody(e)} />
+                        <br />
+                        <span>Password : </span>
+                        <input type="password" name="password" value={body?.password} onChange={(e) => onChangeBody(e)} />
+                        <br />
+                        <button type='submit' onClick={e => login(e)}>Login</button>
+                    </div>
+                    :
+                    <div>
+                        <span>DisplayName : {selectedAuth.displayName} </span>
+                        <br />
+                        <span>Username : {selectedAuth.username} </span>
+                        <br />
+                        <span>Email : {selectedAuth.email} </span>
+                        <br />
+                        <span>Token : {selectedAuth.token} </span>
+                        <br />
+                        <button type='submit' onClick={e => logout(e)}>Logout</button>
+                    </div>
+
+            }
+
+
         </div>
     );
 };

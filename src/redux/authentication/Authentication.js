@@ -22,8 +22,7 @@ const Authentication = () => {
     }
     const login = e => {
         e.preventDefault();
-        console.log("login");
-        console.log(body);
+        
         dispatch(loginAsync({
             username: body.username,
             password: body.password,
@@ -33,9 +32,7 @@ const Authentication = () => {
     }
     const logout = e => {
         e.preventDefault();
-        console.log("logout")
-        console.log(body)
-
+        
         dispatch(logoutAsync({
             username: body.username,
             password: body.password,
